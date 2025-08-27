@@ -307,16 +307,16 @@ export default function VendorOnboardingPage() {
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               {/* Left Column - Content */}
               <div className="text-left">
-                <div className="inline-block border border-white/30 text-white px-4 py-2 rounded-full text-sm mb-6">
+                <div className="inline-block border-2 border-white/30 text-white px-4 py-2 rounded-full text-sm mb-6">
                   go digital
                 </div>
                 <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-                  Ethiopia's Leading E-commerce Platform
+                  Grow Your Business Online
                 </h1>
                 <p className="text-xl text-white/80 mb-8 max-w-xl">
                   Join thousands of Ethiopian entrepreneurs selling online.
-                  Start your digital business today with secure payments and
-                  delivery across Ethiopia.
+                  Launch your digital store today with secure payments, reliable
+                  delivery, and nationwide reach.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-start">
                   <Button
@@ -436,14 +436,13 @@ export default function VendorOnboardingPage() {
               <div className="grid lg:grid-cols-5 gap-16 items-center">
                 <div className="lg:col-span-2 text-left">
                   <h2 className="text-4xl md:text-6xl font-bold mb-8 leading-tight text-white">
-                    Designed for Ethiopian Businesses
+                    Built for Local Businesses
                   </h2>
                   <p className="text-xl text-white/80 mb-8 max-w-xl leading-relaxed">
                     Choose from templates designed specifically for Ethiopian
-                    market needs. Support for Amharic text, Ethiopian Birr (ETB)
-                    currency, and local business practices. Perfect for selling
-                    traditional crafts, modern goods, and services across
-                    Ethiopia.
+                    businesses. Our platform supports payment methods and
+                    delivery networks. Perfect for selling traditional crafts,
+                    and modern goods.
                   </p>
                 </div>
 
@@ -684,8 +683,8 @@ export default function VendorOnboardingPage() {
                   Packages
                 </h2>
                 <p className="text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
-                  Affordable pricing for Ethiopian entrepreneurs. Start your
-                  online business today!
+                  Affordable pricing for Ethiopian businesses. Start your online
+                  business today!
                 </p>
               </div>
 
@@ -888,10 +887,9 @@ export default function VendorOnboardingPage() {
                     What is e2 Platform Ethiopia?
                   </h3>
                   <p className="text-sm">
-                    e2 is Ethiopia's leading e-commerce platform designed
-                    specifically for Ethiopian businesses. We help local
-                    entrepreneurs reach customers across Addis Ababa, Dire Dawa,
-                    Bahir Dar, Hawassa, and all Ethiopian cities.
+                    e2 is Ethiopia's e-commerce platform designed specifically
+                    for Ethiopian businesses. We help local entrepreneurs reach
+                    customers.
                   </p>
                 </div>
 
@@ -901,10 +899,9 @@ export default function VendorOnboardingPage() {
                     Why choose e2 for Ethiopian business?
                   </h3>
                   <p className="text-sm">
-                    We support Ethiopian Birr (ETB) payments, local delivery
-                    networks, Amharic language support, and understand Ethiopian
+                    We support local delivery networks, and understand Ethiopian
                     business culture. Perfect for selling traditional crafts,
-                    modern goods, and services.
+                    and modern goods.
                   </p>
                 </div>
 
@@ -917,7 +914,7 @@ export default function VendorOnboardingPage() {
                     Create your vendor account, upload your products with
                     Ethiopian Birr pricing, set up delivery zones across
                     Ethiopian cities, and start reaching Ethiopian customers
-                    immediately. Full support in English and Amharic.
+                    immediately.
                   </p>
                 </div>
 
@@ -951,10 +948,10 @@ export default function VendorOnboardingPage() {
                   />
                 </div>
                 <p className="text-gray-400 text-sm leading-relaxed">
-                  Empowering Ethiopian entrepreneurs to build successful online
-                  businesses. Supporting local commerce with Ethiopian Birr
-                  payments, nationwide delivery, and tools designed for the
-                  Ethiopian market.
+                  Empowering Ethiopian entrepreneurs and businesses to build
+                  successful online businesses. Supporting local commerce with
+                  Ethiopian Birr payments, nationwide delivery, and tools
+                  designed for the Ethiopian market.
                 </p>
                 <div className="flex space-x-4">
                   <a
