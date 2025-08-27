@@ -4,6 +4,7 @@ import type React from 'react';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import StructuredData from '@/components/structured-data';
 import {
   CheckCircle,
   TrendingUp,
@@ -20,8 +21,18 @@ import {
   Lock,
   Percent,
   CreditCard,
+  UserRoundPlus,
+  CircleDollarSign,
 } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+} from '../components/ui/carousel';
+import Image from 'next/image';
 
 export default function VendorOnboardingPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -160,25 +171,31 @@ export default function VendorOnboardingPage() {
       className="min-h-screen text-white relative"
       style={{ backgroundColor: '#171717' }}
     >
+      <StructuredData />
       <div className="relative z-10">
         <header
-          className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 max-sm:bg-black/80 max-sm:backdrop-blur-sm ${
             isScrolled ? 'bg-black/80 backdrop-blur-sm' : ''
           }`}
         >
           <div className="max-w-6xl mx-auto px-6 py-2">
             <div className="flex items-center justify-between h-16">
               <div className="flex items-center space-x-8">
-                <img src="/e2-logo.png" alt="e2 Logo" className="h-8 w-auto" />
+                <img
+                  onClick={() => scrollToSection('hero')}
+                  src="/e2-logo.png"
+                  alt="e2 Logo"
+                  className="h-8 w-auto cursor-pointer"
+                />
 
                 {/* Desktop Navigation - moved to left side */}
                 <nav className="hidden md:flex items-center space-x-8">
-                  <button
+                  {/* <button
                     onClick={() => scrollToSection('hero')}
                     className="text-white/80 hover:text-white transition-colors cursor-pointer"
                   >
                     Home
-                  </button>
+                  </button> */}
                   <button
                     onClick={() => scrollToSection('features')}
                     className="text-white/80 hover:text-white transition-colors cursor-pointer"
@@ -209,7 +226,7 @@ export default function VendorOnboardingPage() {
               <div className="flex items-center">
                 <Button
                   size="sm"
-                  className="hidden md:flex items-center bg-gradient-to-r from-pink-500 to-blue-500 text-white hover:from-pink-600 hover:to-blue-600 rounded-lg px-8 py-6 font-medium transition-colors cursor-pointer"
+                  className="hidden md:flex items-center text-white bg-[linear-gradient(61.93deg,#FF8E54_4.59%,#DA33D0_55.72%,#0C3DDE_106.85%)] transition hover:brightness-85 hover:backdrop-blur-sm rounded-lg px-8 py-6 font-medium cursor-pointer"
                   onClick={goToOnboarding}
                 >
                   Start Selling
@@ -233,12 +250,12 @@ export default function VendorOnboardingPage() {
             {isMenuOpen && (
               <div className="md:hidden py-4">
                 <nav className="flex flex-col space-y-4">
-                  <button
+                  {/* <button
                     onClick={() => scrollToSection('hero')}
                     className="text-left text-white/80 hover:text-white transition-colors cursor-pointer"
                   >
                     Home
-                  </button>
+                  </button> */}
                   <button
                     onClick={() => scrollToSection('features')}
                     className="text-left text-white/80 hover:text-white transition-colors cursor-pointer"
@@ -265,7 +282,7 @@ export default function VendorOnboardingPage() {
                   </button>
                   <Button
                     size="sm"
-                    className="bg-gradient-to-r from-pink-500 to-blue-500 text-white hover:from-pink-600 hover:to-blue-600 rounded-lg px-8 py-6 text-lg font-semibold w-fit transition-colors cursor-pointer"
+                    className="text-white bg-[linear-gradient(61.93deg,#FF8E54_4.59%,#DA33D0_55.72%,#0C3DDE_106.85%)] transition hover:brightness-85 hover:backdrop-blur-sm rounded-lg px-8 py-6 text-lg font-semibold w-fit cursor-pointer"
                     onClick={goToOnboarding}
                   >
                     Start Selling
@@ -294,16 +311,17 @@ export default function VendorOnboardingPage() {
                   go digital
                 </div>
                 <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-                  Turn Your Passion into Profit
+                  Ethiopia's Leading E-commerce Platform
                 </h1>
                 <p className="text-xl text-white/80 mb-8 max-w-xl">
-                  Open your store in minutes with secure payments, fast payouts,
-                  and tools to grow.
+                  Join thousands of Ethiopian entrepreneurs selling online.
+                  Start your digital business today with secure payments and
+                  delivery across Ethiopia.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-start">
                   <Button
                     size="lg"
-                    className="bg-gradient-to-r from-pink-500 to-blue-500 text-white hover:from-pink-600 hover:to-blue-600 rounded-lg px-12 py-8 text-lg font-semibold transition-colors cursor-pointer"
+                    className="bg-[linear-gradient(61.93deg,#FF8E54_4.59%,#DA33D0_55.72%,#0C3DDE_106.85%)] transition hover:brightness-85 hover:backdrop-blur-sm text-white hover:from-pink-600 hover:to-blue-600 rounded-lg px-12 py-8 text-lg font-semibold cursor-pointer"
                     onClick={goToOnboarding}
                   >
                     Start Selling
@@ -378,7 +396,7 @@ export default function VendorOnboardingPage() {
                   >
                     Close Preview
                   </Button>
-                  <Button className="bg-gradient-to-r from-pink-500 to-blue-500 text-white hover:from-pink-600 hover:to-blue-600 px-8 cursor-pointer">
+                  <Button className="bg-[linear-gradient(61.93deg,#FF8E54_4.59%,#DA33D0_55.72%,#0C3DDE_106.85%)] transition hover:brightness-85 hover:backdrop-blur-sm text-white px-8 cursor-pointer">
                     Use This Template
                   </Button>
                 </div>
@@ -392,11 +410,12 @@ export default function VendorOnboardingPage() {
             backgroundColor: '#171717',
             position: 'relative',
           }}
+          className="overflow-hidden"
         >
           <div
             style={{
               backgroundImage: `url('/Halftone 2.png')`,
-              backgroundSize: 'cover',
+              backgroundSize: '180%',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
               backgroundColor: 'transparent',
@@ -417,22 +436,74 @@ export default function VendorOnboardingPage() {
               <div className="grid lg:grid-cols-5 gap-16 items-center">
                 <div className="lg:col-span-2 text-left">
                   <h2 className="text-4xl md:text-6xl font-bold mb-8 leading-tight text-white">
-                    Choose Your Template
+                    Designed for Ethiopian Businesses
                   </h2>
                   <p className="text-xl text-white/80 mb-8 max-w-xl leading-relaxed">
-                    Select from our collection of professionally designed
-                    templates. Each template is fully customizable and optimized
-                    for your business needs. Start with a design that matches
-                    your brand and customize it to perfection.
+                    Choose from templates designed specifically for Ethiopian
+                    market needs. Support for Amharic text, Ethiopian Birr (ETB)
+                    currency, and local business practices. Perfect for selling
+                    traditional crafts, modern goods, and services across
+                    Ethiopia.
                   </p>
                 </div>
 
                 <div className="lg:col-span-3 relative flex justify-center">
-                  <img
+                  <Carousel>
+                    <CarouselContent>
+                      <CarouselItem>
+                        <Image
+                          src="/templates/screencapture-awrastore-template.png"
+                          width={500}
+                          height={500}
+                          alt="Awrastore template"
+                          className="w-auto mx-auto max-w-full max-h-[52rem] h-auto rounded-3xl"
+                        />
+                      </CarouselItem>
+                      <CarouselItem>
+                        <Image
+                          src="/templates/screencapture-justgo22-template.png"
+                          width={500}
+                          height={500}
+                          alt="Awrastore template"
+                          className="w-auto mx-auto max-w-full max-h-[52rem] h-auto rounded-3xl"
+                        />
+                      </CarouselItem>
+                      <CarouselItem>
+                        <Image
+                          src="/templates/screencapture-debonairs-template.png"
+                          width={500}
+                          height={500}
+                          alt="Awrastore template"
+                          className="w-auto mx-auto max-w-full max-h-[52rem] h-auto rounded-3xl"
+                        />
+                      </CarouselItem>
+                      <CarouselItem>
+                        <Image
+                          src="/templates/screencapture-zemenstore-template.png"
+                          width={500}
+                          height={500}
+                          alt="Awrastore template"
+                          className="w-auto mx-auto max-w-full max-h-[52rem] h-auto rounded-3xl"
+                        />
+                      </CarouselItem>
+                      <CarouselItem>
+                        <Image
+                          src="/templates/screencapture-spareparts-template.png"
+                          width={500}
+                          height={500}
+                          alt="Awrastore template"
+                          className="w-auto mx-auto max-w-full max-h-[52rem] h-auto rounded-3xl"
+                        />
+                      </CarouselItem>
+                    </CarouselContent>
+                    <CarouselPrevious />
+                    <CarouselNext />
+                  </Carousel>
+                  {/* <img
                     src="/template-showcase.png"
                     alt="Multiple ecommerce store templates showcasing various products and layouts"
                     className="w-full max-w-6xl h-auto"
-                  />
+                  /> */}
                 </div>
               </div>
             </div>
@@ -450,7 +521,9 @@ export default function VendorOnboardingPage() {
                 {/* Step 1 */}
                 <div className="flex flex-col items-center text-center">
                   <div className="w-20 h-20 bg-gradient-to-br from-pink-500 to-purple-500 rounded-full flex items-center justify-center mb-6 relative">
-                    <span className="text-white font-bold text-2xl">1</span>
+                    <span className="bg-white p-4 rounded-full font-bold text-2xl">
+                      <UserRoundPlus className="h-6 w-6 text-pink-500 mx-auto" />
+                    </span>
                   </div>
                   <h3 className="text-xl font-semibold text-white mb-2">
                     Create Account
@@ -466,7 +539,9 @@ export default function VendorOnboardingPage() {
                 {/* Step 2 */}
                 <div className="flex flex-col items-center text-center">
                   <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-blue-500 rounded-full flex items-center justify-center mb-6 relative">
-                    <span className="text-white font-bold text-2xl">2</span>
+                    <span className="bg-white p-4 rounded-full font-bold text-2xl">
+                      <ShoppingCart className="h-6 w-6 text-purple-500 mx-auto" />
+                    </span>
                   </div>
                   <h3 className="text-xl font-semibold text-white mb-2">
                     Add Your Items
@@ -482,7 +557,9 @@ export default function VendorOnboardingPage() {
                 {/* Step 3 */}
                 <div className="flex flex-col items-center text-center">
                   <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mb-6 relative">
-                    <span className="text-white font-bold text-2xl">3</span>
+                    <span className="bg-white p-4 rounded-full font-bold text-2xl">
+                      <CircleDollarSign className="h-6 w-6 text-blue-500 mx-auto" />
+                    </span>
                   </div>
                   <h3 className="text-xl font-semibold text-white mb-2">
                     Start Selling
@@ -507,13 +584,8 @@ export default function VendorOnboardingPage() {
               </div>
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <Card
-                  className="text-white py-16 px-8 rounded-3xl shadow-lg backdrop-blur-lg border-0"
-                  style={{
-                    background: `rgba(0, 0, 0, 0.3)`,
-                  }}
-                >
-                  <CardContent className="text-left">
+                <Card className="text-white py-16 px-8 rounded-3xl shadow-lg backdrop-blur-lg border border-slate-800 hover:bg-slate-800 bg-[#0000004d] transition">
+                  <CardContent className="text-left px-0">
                     <div className="w-12 h-12 bg-pink-100 rounded-xl flex items-center justify-center mb-8">
                       <TrendingUp className="h-6 w-6 text-pink-500 mx-auto" />
                     </div>
@@ -527,13 +599,8 @@ export default function VendorOnboardingPage() {
                   </CardContent>
                 </Card>
 
-                <Card
-                  className="text-white py-16 px-8 rounded-3xl shadow-lg backdrop-blur-lg border-0"
-                  style={{
-                    background: `rgba(0, 0, 0, 0.3)`,
-                  }}
-                >
-                  <CardContent className="text-left">
+                <Card className="text-white py-16 px-8 rounded-3xl shadow-lg backdrop-blur-lg border border-slate-800 hover:bg-slate-800 bg-[#0000004d] transition">
+                  <CardContent className="text-left px-0">
                     <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-8">
                       <ShoppingCart className="h-6 w-6 text-purple-500 mx-auto" />
                     </div>
@@ -547,13 +614,8 @@ export default function VendorOnboardingPage() {
                   </CardContent>
                 </Card>
 
-                <Card
-                  className="text-white py-16 px-8 rounded-3xl shadow-lg backdrop-blur-lg border-0"
-                  style={{
-                    background: `rgba(0, 0, 0, 0.3)`,
-                  }}
-                >
-                  <CardContent className="text-left">
+                <Card className="text-white py-16 px-8 rounded-3xl shadow-lg backdrop-blur-lg border border-slate-800 hover:bg-slate-800 bg-[#0000004d] transition">
+                  <CardContent className="text-left px-0">
                     <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-8">
                       <Zap className="h-6 w-6 text-blue-500 mx-auto" />
                     </div>
@@ -567,13 +629,8 @@ export default function VendorOnboardingPage() {
                   </CardContent>
                 </Card>
 
-                <Card
-                  className="text-white py-16 px-8 rounded-3xl shadow-lg backdrop-blur-lg border-0"
-                  style={{
-                    background: `rgba(0, 0, 0, 0.3)`,
-                  }}
-                >
-                  <CardContent className="text-left">
+                <Card className="text-white py-16 px-8 rounded-3xl shadow-lg backdrop-blur-lg border border-slate-800 hover:bg-slate-800 bg-[#0000004d] transition">
+                  <CardContent className="text-left px-0">
                     <div className="w-12 h-12 bg-pink-100 rounded-xl flex items-center justify-center mb-8">
                       <Lock className="h-6 w-6 text-pink-500 mx-auto" />
                     </div>
@@ -587,13 +644,8 @@ export default function VendorOnboardingPage() {
                   </CardContent>
                 </Card>
 
-                <Card
-                  className="text-white py-16 px-8 rounded-3xl shadow-lg backdrop-blur-lg border-0"
-                  style={{
-                    background: `rgba(0, 0, 0, 0.3)`,
-                  }}
-                >
-                  <CardContent className="text-left">
+                <Card className="text-white py-16 px-8 rounded-3xl shadow-lg backdrop-blur-lg border border-slate-800 hover:bg-slate-800 bg-[#0000004d] transition">
+                  <CardContent className="text-left px-0">
                     <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-8">
                       <Percent className="h-6 w-6 text-purple-500 mx-auto" />
                     </div>
@@ -607,13 +659,8 @@ export default function VendorOnboardingPage() {
                   </CardContent>
                 </Card>
 
-                <Card
-                  className="text-white py-16 px-8 rounded-3xl shadow-lg backdrop-blur-lg border-0"
-                  style={{
-                    background: `rgba(0, 0, 0, 0.3)`,
-                  }}
-                >
-                  <CardContent className="text-left">
+                <Card className="text-white py-16 px-8 rounded-3xl shadow-lg backdrop-blur-lg border border-slate-800 hover:bg-slate-800 bg-[#0000004d] transition">
+                  <CardContent className="text-left px-0">
                     <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-8">
                       <CreditCard className="h-6 w-6 text-blue-500 mx-auto" />
                     </div>
@@ -637,16 +684,17 @@ export default function VendorOnboardingPage() {
                   Packages
                 </h2>
                 <p className="text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
-                  Your Ultimate SaaS Ecommerce Solution!
+                  Affordable pricing for Ethiopian entrepreneurs. Start your
+                  online business today!
                 </p>
               </div>
 
               <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
                 <Card
-                  className="border border-pink-500 text-white px-4 py-8 rounded-2xl relative backdrop-blur-lg min-h-[600px] flex flex-col justify-center"
+                  className="border border-pink-500 text-white px-4 py-8 rounded-2xl relative backdrop-blur-lg min-h-[525px] flex flex-col justify-center"
                   style={{ background: 'rgba(0, 0, 0, 0.3)' }}
                 >
-                  <CardHeader className="text-center pb-8">
+                  <CardHeader className="text-center">
                     <h3 className="text-white text-xl font-semibold mb-4">
                       Starter Plan
                     </h3>
@@ -682,17 +730,20 @@ export default function VendorOnboardingPage() {
                         Multiple Payment Gateway
                       </span>
                     </div>
-                    <Button className="w-full mt-6 bg-gradient-to-r from-pink-500 to-blue-500 hover:from-pink-600 hover:to-blue-600 text-white py-6 px-12 text-lg font-semibold rounded-lg cursor-pointer transition-colors">
+                    <Button
+                      onClick={goToOnboarding}
+                      className="w-full mt-6 bg-[linear-gradient(61.93deg,#FF8E54_4.59%,#DA33D0_55.72%,#0C3DDE_106.85%)] transition hover:brightness-85 hover:backdrop-blur-sm text-white py-6 px-12 text-lg font-semibold rounded-lg cursor-pointer"
+                    >
                       Select Plan
                     </Button>
                   </CardContent>
                 </Card>
 
                 <Card
-                  className="border border-gray-600 text-white px-4 py-8 rounded-2xl backdrop-blur-lg min-h-[600px] flex flex-col justify-center"
+                  className="border border-gray-600 text-white px-4 py-8 rounded-2xl backdrop-blur-lg min-h-[525px] flex flex-col justify-center"
                   style={{ background: 'rgba(0, 0, 0, 0.3)' }}
                 >
-                  <CardHeader className="text-center pb-8">
+                  <CardHeader className="text-center">
                     <h3 className="text-white text-xl font-semibold mb-4">
                       Professional Plan
                     </h3>
@@ -728,17 +779,20 @@ export default function VendorOnboardingPage() {
                         Custom Branding
                       </span>
                     </div>
-                    <Button className="w-full mt-6 bg-gradient-to-r from-pink-500 to-blue-500 hover:from-pink-600 hover:to-blue-600 text-white py-6 px-12 text-lg font-semibold rounded-lg cursor-pointer transition-colors">
+                    <Button
+                      onClick={goToOnboarding}
+                      className="w-full mt-6 bg-[linear-gradient(61.93deg,#FF8E54_4.59%,#DA33D0_55.72%,#0C3DDE_106.85%)] transition hover:brightness-85 hover:backdrop-blur-sm text-white py-6 px-12 text-lg font-semibold rounded-lg cursor-pointer"
+                    >
                       Select Plan
                     </Button>
                   </CardContent>
                 </Card>
 
                 <Card
-                  className="border border-gray-600 text-white px-4 py-8 rounded-2xl backdrop-blur-lg min-h-[600px] flex flex-col justify-center"
+                  className="border border-gray-600 text-white px-4 py-8 rounded-2xl backdrop-blur-lg min-h-[525px] flex flex-col justify-center"
                   style={{ background: 'rgba(0, 0, 0, 0.3)' }}
                 >
-                  <CardHeader className="text-center pb-8">
+                  <CardHeader className="text-center">
                     <h3 className="text-white text-xl font-semibold mb-4">
                       Enterprise Plan
                     </h3>
@@ -774,7 +828,10 @@ export default function VendorOnboardingPage() {
                         Custom Integrations
                       </span>
                     </div>
-                    <Button className="w-full mt-6 bg-gradient-to-r from-pink-500 to-blue-500 hover:from-pink-600 hover:to-blue-600 text-white py-6 px-12 text-lg font-semibold rounded-lg cursor-pointer transition-colors">
+                    <Button
+                      onClick={goToOnboarding}
+                      className="w-full mt-6 bg-[linear-gradient(61.93deg,#FF8E54_4.59%,#DA33D0_55.72%,#0C3DDE_106.85%)] transition hover:brightness-85 hover:backdrop-blur-sm text-white py-6 px-12 text-lg font-semibold rounded-lg cursor-pointer"
+                    >
                       Select Plan
                     </Button>
                   </CardContent>
@@ -817,53 +874,63 @@ export default function VendorOnboardingPage() {
                   About Us
                 </h2>
                 <p className="text-xl text-white/80 mb-8 max-w-3xl mx-auto leading-relaxed">
-                  We are dedicated to helping businesses grow and succeed
-                  online. Our platform offers a range of features and tools to
-                  make your ecommerce journey smoother and more profitable.
+                  We are dedicated to empowering Ethiopian entrepreneurs and
+                  businesses to thrive in the digital economy. Our platform is
+                  built specifically for the Ethiopian market, supporting local
+                  payment methods, delivery networks, and business practices.
                 </p>
               </div>
 
               <div className="grid md:grid-cols-2 gap-8">
                 {/* FAQ Item 1 */}
-                <div className="bg-gray-900 text-white px-8 py-12 rounded-2xl">
-                  <h3 className="text-xl font-semibold mb-4">What is e2?</h3>
+                <div className="text-white px-8 py-14 rounded-3xl shadow-lg backdrop-blur-lg border border-slate-800 hover:bg-slate-800 bg-[#0000004d] transition">
+                  <h3 className="text-xl font-semibold mb-4">
+                    What is e2 Platform Ethiopia?
+                  </h3>
                   <p className="text-sm">
-                    e2 is a powerful ecommerce platform that empowers businesses
-                    to reach millions of customers and scale their operations
-                    efficiently.
+                    e2 is Ethiopia's leading e-commerce platform designed
+                    specifically for Ethiopian businesses. We help local
+                    entrepreneurs reach customers across Addis Ababa, Dire Dawa,
+                    Bahir Dar, Hawassa, and all Ethiopian cities.
                   </p>
                 </div>
 
                 {/* FAQ Item 2 */}
-                <div className="bg-gray-900 text-white px-8 py-12 rounded-2xl">
-                  <h3 className="text-xl font-semibold mb-4">Why choose e2?</h3>
+                <div className="text-white px-8 py-14 rounded-3xl shadow-lg backdrop-blur-lg border border-slate-800 hover:bg-slate-800 bg-[#0000004d] transition">
+                  <h3 className="text-xl font-semibold mb-4">
+                    Why choose e2 for Ethiopian business?
+                  </h3>
                   <p className="text-sm">
-                    Our platform offers advanced features, secure payments, fast
-                    payouts, and tools to help you grow your business online.
+                    We support Ethiopian Birr (ETB) payments, local delivery
+                    networks, Amharic language support, and understand Ethiopian
+                    business culture. Perfect for selling traditional crafts,
+                    modern goods, and services.
                   </p>
                 </div>
 
                 {/* FAQ Item 3 */}
-                <div className="bg-gray-900 text-white px-8 py-12 rounded-2xl">
+                <div className="text-white px-8 py-14 rounded-3xl shadow-lg backdrop-blur-lg border border-slate-800 hover:bg-slate-800 bg-[#0000004d] transition">
                   <h3 className="text-xl font-semibold mb-4">
-                    How do I get started?
+                    How do I start selling in Ethiopia?
                   </h3>
                   <p className="text-sm">
-                    Simply create an account, add your items to your store, and
-                    start selling. Our platform is designed to be user-friendly
-                    and easy to use.
+                    Create your vendor account, upload your products with
+                    Ethiopian Birr pricing, set up delivery zones across
+                    Ethiopian cities, and start reaching Ethiopian customers
+                    immediately. Full support in English and Amharic.
                   </p>
                 </div>
 
                 {/* FAQ Item 4 */}
-                <div className="bg-gray-900 text-white px-8 py-12 rounded-2xl">
+                <div className="text-white px-8 py-14 rounded-3xl shadow-lg backdrop-blur-lg border border-slate-800 hover:bg-slate-800 bg-[#0000004d] transition">
                   <h3 className="text-xl font-semibold mb-4">
-                    What kind of support do you offer?
+                    Do you support Ethiopian payment methods?
                   </h3>
                   <p className="text-sm">
-                    We provide comprehensive support, including a help center,
-                    contact options, and documentation to assist you with any
-                    questions or issues you may have.
+                    Yes! We support all major Ethiopian payment methods
+                    including mobile money, bank transfers, and cash on
+                    delivery. Payments are processed in Ethiopian Birr with fast
+                    payouts to Ethiopian bank accounts.
                   </p>
                 </div>
               </div>
@@ -884,8 +951,10 @@ export default function VendorOnboardingPage() {
                   />
                 </div>
                 <p className="text-gray-400 text-sm leading-relaxed">
-                  Empowering businesses to reach millions of customers and scale
-                  their operations with our powerful e-commerce platform.
+                  Empowering Ethiopian entrepreneurs to build successful online
+                  businesses. Supporting local commerce with Ethiopian Birr
+                  payments, nationwide delivery, and tools designed for the
+                  Ethiopian market.
                 </p>
                 <div className="flex space-x-4">
                   <a
@@ -978,22 +1047,6 @@ export default function VendorOnboardingPage() {
                       Contact Us
                     </a>
                   </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="text-gray-400 hover:text-white text-sm transition-colors cursor-pointer"
-                    >
-                      Documentation
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="text-gray-400 hover:text-white text-sm transition-colors cursor-pointer"
-                    >
-                      API Reference
-                    </a>
-                  </li>
                 </ul>
               </div>
 
@@ -1005,11 +1058,14 @@ export default function VendorOnboardingPage() {
                 <div className="space-y-3 text-sm">
                   <div className="flex items-center gap-2 text-gray-400">
                     <Mail className="h-4 w-4 flex-shrink-0" />
-                    <span>support@ee-platform.com</span>
+                    <span>support@e2platform.et</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-400">
                     <Phone className="h-4 w-4 flex-shrink-0" />
-                    <span>+1 (555) 123-4567</span>
+                    <span>+251 911 123 456</span>
+                  </div>
+                  <div className="text-gray-400 text-xs mt-2">
+                    Addis Ababa, Ethiopia
                   </div>
                 </div>
               </div>
