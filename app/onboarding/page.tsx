@@ -1046,7 +1046,7 @@ export default function OnboardingPage() {
                 variant="outline"
                 size="sm"
                 onClick={clearFormData}
-                className="bg-transparent border-gray-600 text-gray-400 hover:bg-gray-800 hover:text-white"
+                className="bg-transparent border-gray-600 text-gray-400 hover:bg-gray-800 hover:text-white cursor-pointer"
               >
                 Clear Form
               </Button>
