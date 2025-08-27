@@ -5,14 +5,14 @@ import './globals.css';
 
 export const metadata: Metadata = {
   title:
-    'e2 Platform Ethiopia - የኢትዮጵያ ቁጥር 1 የመስመር ላይ ገበያ | Start Selling Online Today',
+    'e2 Platform Ethiopia - የኢትዮጵያ ኢኮሜርስ ላይ ገበያ | Start Selling Online Today',
   description:
-    "Join Ethiopia's leading e-commerce platform. Start selling online in Ethiopia with e2 Platform. በኢትዮጵያ ውስጥ የመስመር ላይ ንግድ ይጀምሩ። Secure payments, fast delivery across Addis Ababa, Dire Dawa, Bahir Dar, and all Ethiopian cities.",
+    "Join Ethiopia's leading e-commerce platform. Start selling online in Ethiopia with e2 Platform. በኢትዮጵያ ውስጥ ኢኮሜርስ ላይ ንግድ ይጀምሩ። Secure payments, fast delivery across Addis Ababa, Dire Dawa, Bahir Dar, and all Ethiopian cities.",
   keywords:
-    'Ethiopia e-commerce, Ethiopian online marketplace, sell online Ethiopia, የኢትዮጵያ ኢ-ኮሜርስ, Addis Ababa online store, Ethiopian vendors, online business Ethiopia, digital marketplace Ethiopia, Ethiopian entrepreneurs, sell products Ethiopia, Ethiopian online shopping, e-commerce platform Ethiopia, የመስመር ላይ ንግድ ኢትዮጵያ',
+    'Ethiopia e-commerce, Ethiopian online marketplace, sell online Ethiopia, የኢትዮጵያ ኢ-ኮሜርስ, Addis Ababa online store, Ethiopian vendors, online business Ethiopia, digital marketplace Ethiopia, Ethiopian entrepreneurs, sell products Ethiopia, Ethiopian online shopping, e-commerce platform Ethiopia, ኢኮሜርስ ላይ ንግድ ኢትዮጵያ',
   authors: [{ name: 'e2 Platform Ethiopia' }],
   openGraph: {
-    title: 'e2 Platform Ethiopia - የኢትዮጵያ ቁጥር 1 የመስመር ላይ ገበያ',
+    title: 'e2 Platform Ethiopia - የኢትዮጵያ ኢኮሜርስ ላይ ገበያ',
     description:
       "Join Ethiopia's leading e-commerce platform. Start selling online in Ethiopia with secure payments and fast delivery.",
     url: 'https://e2.net',
