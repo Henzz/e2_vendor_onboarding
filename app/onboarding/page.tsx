@@ -476,7 +476,7 @@ export default function OnboardingPage() {
     setError(null);
 
     try {
-      const response = await axios.post('/api/vendor-onboarding', vendorData, {
+      const response = await axios.post('https://sandboxadmin.e2store.net/api/vendors', vendorData, {
         headers: {
           'Content-Type': 'application/json',
         },
