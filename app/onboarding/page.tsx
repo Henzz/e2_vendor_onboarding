@@ -488,9 +488,6 @@ export default function OnboardingPage() {
 
       // Append all form fields to FormData
       Object.entries(vendorData).forEach(([key, value]) => {
-        // Skip password confirmation as it's only needed for validation
-        if (key === 'password_confirmation') return;
-        
         // Handle file uploads
         if (key === 'trade_license_doc' || key === 'id_card_doc') {
           if (value) {
@@ -529,25 +526,38 @@ export default function OnboardingPage() {
       }
 
       // Handle validation errors (422 Unprocessable Entity)
-      if (response.status === 422 && response.data?.errors) {
-        const serverErrors = response.data.errors;
+      if (response.status === 422 && (response.data?.errors || response.data?.message)) {
+        const serverErrors = response.data.errors || response.data.message;
         const newFieldErrors: Record<string, string> = {};
         
-        // Map server validation errors to field errors
-        Object.entries(serverErrors).forEach(([field, messages]) => {
-          if (Array.isArray(messages) && messages.length > 0) {
-            newFieldErrors[field] = messages[0];
+        // Handle different server response formats
+        if (typeof serverErrors === 'object') {
+          // Format: { field: ["error1", "error2"] }
+          Object.entries(serverErrors).forEach(([field, messages]) => {
+            if (Array.isArray(messages) && messages.length > 0) {
+              newFieldErrors[field] = messages[0];
+            } else if (typeof messages === 'string') {
+              // Handle case where message is a direct string
+              newFieldErrors[field] = messages;
+            }
+          });
+        }
+        
+        // Set field errors and general error message
+        if (Object.keys(newFieldErrors).length > 0) {
+          setFieldErrors(newFieldErrors);
+          setError('Please correct the errors in the form.');
+          
+          // Scroll to the first error field
+          const firstError = Object.keys(newFieldErrors)[0];
+          if (firstError) {
+            const element = document.querySelector(`[name="${firstError}"]`) || 
+                           document.getElementById(firstError);
+            element?.scrollIntoView({ behavior: 'smooth', block: 'center' });
           }
-        });
-        
-        setFieldErrors(newFieldErrors);
-        setError('Please correct the errors in the form.');
-        
-        // Scroll to the first error field
-        const firstError = Object.keys(newFieldErrors)[0];
-        if (firstError) {
-          const element = document.querySelector(`[name="${firstError}"]`);
-          element?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+          // Fallback error message if we couldn't parse the errors
+          setError(response.data.message || 'Please check your input and try again.');
         }
         return;
       }
