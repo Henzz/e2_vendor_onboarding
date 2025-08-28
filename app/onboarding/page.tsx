@@ -469,11 +469,18 @@ export default function OnboardingPage() {
   const handleSubmit = async () => {
     if (!validateStep(4)) {
       setError('Please fill in all required fields.');
+      // Scroll to the first error field if any
+      const firstError = Object.keys(fieldErrors)[0];
+      if (firstError) {
+        const element = document.querySelector(`[name="${firstError}"]`);
+        element?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
       return;
     }
 
     setIsLoading(true);
     setError(null);
+    setFieldErrors({}); // Clear previous field errors
 
     try {
       // Create FormData object
@@ -491,7 +498,7 @@ export default function OnboardingPage() {
           }
         } else {
           // Append other fields as strings
-          formData.append(key, value as string);
+          formData.append(key, String(value));
         }
       });
 
@@ -501,42 +508,98 @@ export default function OnboardingPage() {
         {
           headers: {
             'Content-Type': 'multipart/form-data',
+            'Accept': 'application/json',
           },
-          timeout: 30000, // Increased timeout for file uploads
+          timeout: 30000, // 30 seconds timeout for file uploads
+          withCredentials: true, // Include cookies in the request
+          validateStatus: (status) => status >= 200 && status < 500, // Don't throw on 4xx errors
         }
       );
 
-      console.log('Submission successful:', response.data);
-
-      // Clear saved data from localStorage on successful submission
-      if (typeof window !== 'undefined') {
-        localStorage.removeItem('vendor-onboarding-data');
-        localStorage.removeItem('vendor-onboarding-completed-steps');
+      // Handle successful response
+      if (response.status >= 200 && response.status < 300) {
+        console.log('Submission successful:', response.data);
+        // Clear saved data from localStorage on successful submission
+        if (typeof window !== 'undefined') {
+          localStorage.removeItem('vendor-onboarding-data');
+          localStorage.removeItem('vendor-onboarding-completed-steps');
+        }
+        setIsSubmitted(true);
+        return;
       }
 
-      setIsSubmitted(true);
+      // Handle validation errors (422 Unprocessable Entity)
+      if (response.status === 422 && response.data?.errors) {
+        const serverErrors = response.data.errors;
+        const newFieldErrors: Record<string, string> = {};
+        
+        // Map server validation errors to field errors
+        Object.entries(serverErrors).forEach(([field, messages]) => {
+          if (Array.isArray(messages) && messages.length > 0) {
+            newFieldErrors[field] = messages[0];
+          }
+        });
+        
+        setFieldErrors(newFieldErrors);
+        setError('Please correct the errors in the form.');
+        
+        // Scroll to the first error field
+        const firstError = Object.keys(newFieldErrors)[0];
+        if (firstError) {
+          const element = document.querySelector(`[name="${firstError}"]`);
+          element?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        return;
+      }
+
+      // Handle other error responses
+      throw new Error(response.data?.message || 'Failed to submit application');
+
     } catch (error) {
       console.error('Error submitting application:', error);
-
+      
       if (axios.isAxiosError(error)) {
-        if (error.response) {
+        if (error.code === 'ECONNABORTED') {
+          setError('Request timed out. Please check your internet connection and try again.');
+        } else if (error.response) {
           // Server responded with error status
-          setError(
-            error.response.data?.message ||
-              'Failed to submit application. Please try again.'
-          );
+          const { status, data } = error.response;
+          
+          switch (status) {
+            case 401:
+              setError('Authentication required. Please log in and try again.');
+              break;
+            case 403:
+              setError('You do not have permission to perform this action.');
+              break;
+            case 404:
+              setError('The requested resource was not found.');
+              break;
+            case 429:
+              setError('Too many requests. Please try again later.');
+              break;
+            case 500:
+              setError('A server error occurred. Our team has been notified. Please try again later.');
+              break;
+            default:
+              setError(data?.message || `Error: ${status} - ${data?.error || 'Unknown error'}`);
+          }
         } else if (error.request) {
           // Request was made but no response received
-          setError(
-            'Network error. Please check your connection and try again.'
-          );
+          setError('Unable to connect to the server. Please check your internet connection and try again.');
         } else {
-          // Something else happened
-          setError('An unexpected error occurred. Please try again.');
+          // Something else happened while setting up the request
+          setError(`Request error: ${error.message}`);
         }
+      } else if (error instanceof Error) {
+        // Non-Axios error
+        setError(`Error: ${error.message}`);
       } else {
         setError('An unexpected error occurred. Please try again.');
       }
+      
+      // Log the full error for debugging
+      console.error('Full error details:', error);
     } finally {
       setIsLoading(false);
     }
