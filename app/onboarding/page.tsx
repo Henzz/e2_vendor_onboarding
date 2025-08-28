@@ -476,14 +476,33 @@ export default function OnboardingPage() {
     setError(null);
 
     try {
+      // Create FormData object
+      const formData = new FormData();
+
+      // Append all form fields to FormData
+      Object.entries(vendorData).forEach(([key, value]) => {
+        // Skip password confirmation as it's only needed for validation
+        if (key === 'password_confirmation') return;
+        
+        // Handle file uploads
+        if (key === 'trade_license_doc' || key === 'id_card_doc') {
+          if (value) {
+            formData.append(key, value as File);
+          }
+        } else {
+          // Append other fields as strings
+          formData.append(key, value as string);
+        }
+      });
+
       const response = await axios.post(
         'https://sandboxadmin.e2store.net/api/vendors',
-        vendorData,
+        formData,
         {
           headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'multipart/form-data',
           },
-          timeout: 10000, // 10 second timeout
+          timeout: 30000, // Increased timeout for file uploads
         }
       );
 
