@@ -17,9 +17,9 @@ export default function StructuredData() {
     },
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+251-911-123-456",
+      "telephone": "+251-97-943-4331",
       "contactType": "customer service",
-      "email": "support@e2platform.et",
+      "email": "contact@e2.net",
       "availableLanguage": ["English", "Amharic"]
     },
     "sameAs": [

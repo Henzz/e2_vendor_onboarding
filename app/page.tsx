@@ -948,10 +948,9 @@ export default function VendorOnboardingPage() {
                   />
                 </div>
                 <p className="text-gray-400 text-sm leading-relaxed">
-                  Empowering Ethiopian entrepreneurs and businesses to build
-                  successful online businesses. Supporting local commerce with
-                  Ethiopian Birr payments, nationwide delivery, and tools
-                  designed for the Ethiopian market.
+                  Empowering businesses to reach millions of customers and scale
+                  their operations to build successful online businesses with
+                  our powerful e-commerce platform.
                 </p>
                 <div className="flex space-x-4">
                   <a
@@ -1055,11 +1054,11 @@ export default function VendorOnboardingPage() {
                 <div className="space-y-3 text-sm">
                   <div className="flex items-center gap-2 text-gray-400">
                     <Mail className="h-4 w-4 flex-shrink-0" />
-                    <span>support@e2platform.et</span>
+                    <span>contact@e2.net</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-400">
                     <Phone className="h-4 w-4 flex-shrink-0" />
-                    <span>+251 911 123 456</span>
+                    <span>+251 97 943 4331</span>
                   </div>
                   <div className="text-gray-400 text-xs mt-2">
                     Addis Ababa, Ethiopia
@@ -1071,7 +1070,7 @@ export default function VendorOnboardingPage() {
             {/* Bottom Bar */}
             <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
               <p className="text-gray-400 text-sm">
-                © 2024 e/e Platform. All rights reserved.
+                © 2024 e2 Platform. All rights reserved.
               </p>
               <div className="flex space-x-6 mt-4 md:mt-0">
                 <a
@@ -1085,12 +1084,6 @@ export default function VendorOnboardingPage() {
                   className="text-gray-400 hover:text-white text-sm transition-colors cursor-pointer"
                 >
                   Terms of Service
-                </a>
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-white text-sm transition-colors cursor-pointer"
-                >
-                  Cookie Policy
                 </a>
               </div>
             </div>

@@ -476,16 +476,12 @@ export default function OnboardingPage() {
     setError(null);
 
     try {
-      const response = await axios.post(
-        'https://sandboxadmin.e2store.net/api/vendors',
-        vendorData,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          timeout: 10000, // 10 second timeout
-        }
-      );
+      const response = await axios.post('https://sandboxadmin.e2store.net/api/vendors', vendorData, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        timeout: 10000, // 10 second timeout
+      });
 
       console.log('Submission successful:', response.data);
 
@@ -769,8 +765,7 @@ export default function OnboardingPage() {
                 </div>
                 <p className="text-gray-400 text-sm leading-relaxed">
                   Empowering businesses to reach millions of customers and scale
-                  their operations to build successful online businesses with
-                  our powerful e-commerce platform.
+                  their operations with our powerful e-commerce platform.
                 </p>
                 <div className="flex space-x-4">
                   <a
@@ -881,7 +876,7 @@ export default function OnboardingPage() {
                   </div>
                   <div className="flex items-center gap-2 text-gray-400">
                     <Phone className="h-4 w-4 flex-shrink-0" />
-                    <span>+251 97 943 4331</span>
+                    <span>2519XXXXXXXX or 2517XXXXXXXX</span>
                   </div>
                 </div>
               </div>
@@ -925,12 +920,7 @@ export default function OnboardingPage() {
         <div className="max-w-6xl mx-auto px-6 py-2">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center space-x-8">
-              <img
-                onClick={goHome}
-                src="/e2-logo.png"
-                alt="e2 Logo"
-                className="h-8 w-auto cursor-pointer"
-              />
+              <img onClick={goHome} src="/e2-logo.png" alt="e2 Logo" className="h-8 w-auto cursor-pointer" />
               <nav className="hidden md:flex items-center space-x-8">
                 {/* <button
                   onClick={goHome}
@@ -1695,8 +1685,7 @@ export default function OnboardingPage() {
               </div>
               <p className="text-gray-400 text-sm leading-relaxed">
                 Empowering businesses to reach millions of customers and scale
-                their operations to build successful online businesses with our
-                powerful e-commerce platform.
+                their operations with our powerful e-commerce platform.
               </p>
               <div className="flex space-x-4">
                 <a
@@ -1803,7 +1792,7 @@ export default function OnboardingPage() {
                 </div>
                 <div className="flex items-center gap-2 text-gray-400">
                   <Phone className="h-4 w-4 flex-shrink-0" />
-                  <span>+251 97 943 4331</span>
+                  <span>2519XXXXXXXX or 2517XXXXXXXX</span>
                 </div>
               </div>
             </div>
