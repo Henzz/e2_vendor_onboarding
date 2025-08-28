@@ -508,7 +508,7 @@ export default function OnboardingPage() {
             'Accept': 'application/json',
           },
           timeout: 30000, // 30 seconds timeout for file uploads
-          withCredentials: true, // Include cookies in the request
+          // withCredentials: true, // Include cookies in the request
           validateStatus: (status) => status >= 200 && status < 500, // Don't throw on 4xx errors
         }
       );
